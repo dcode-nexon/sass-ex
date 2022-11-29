@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+
+@import 'reset';
+@import 'color';
+@import 'font';
+@import 'mixin';
+
+body {
+    background:$bgBoldyColor;
+
+    .wrap {
+        width:100%; 
+        border:2px solid #bbb;
+        box-sizing:border-box;
+        padding:100px; 
+
+        &::after {
+            content:'';
+            display:block;
+            clear:both;
+        }
+        &:hover {
+            .item {
+                opacity:1;
+                transform:translateY(0px);
+            }
+        }
+        .item {
+            width:300px; 
+            box-sizing:border-box;
+            padding:20px;
+            margin:20px;
+            border-radius:10px;
+            background:$bgBoxColor;
+            float:left;
+            box-shadow:5px 5px 20px #ddd;
+            opacity:0;
+            transform:translateY(100px);
+            transition-duration:0.5s;
+
+            //for문으로 trasntion-delay값 설정
+            @for $i from 1 through 4 {
+                &:nth-of-type(#{$i}) {
+                    transition-delay: 0.1s * $i;
+                }
+            }
+            
+
+    
+            h2 {
+                color:$titleColor;
+                font-size:$fontBig;
+                font-family:$titleFont;
+                margin-bottom:15px;
+            }
+    
+            p {
+                color:$contentColor;
+                font-size:$fontMid;
+                font-family:$contentFont;  
+                margin-bottom:20px;
+            }
+    
+            a {
+                @include button($corner:15px, $bgColor:lightgreen);
+            }
+    
+            &:hover {
+                background:skyblue;
+    
+                h2 {color:#fff;}
+                p {color:#eee;}
+                a {color:#eee;}
+            }
+        }
+    }
+
+    
+}
+
